@@ -24,6 +24,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls')),
     path('', views.home, name='home'),
+    path('accounts/', include('accounts.urls')),
+
     path('fblogin', views.fblogin, name='fblogin'),
 ]
 
