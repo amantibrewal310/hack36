@@ -14,7 +14,7 @@ def signup_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/accounts/')
+            return redirect('/')
         else:
             return HttpResponse("Please Enter good password")
     else:
