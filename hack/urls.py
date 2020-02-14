@@ -25,8 +25,6 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('', views.home, name='home'),
     path('accounts/', include('accounts.urls')),
-
-    path('fblogin', views.fblogin, name='fblogin'),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
