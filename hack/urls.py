@@ -24,12 +24,9 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls')),
     path('', views.home, name='home'),
-<<<<<<< HEAD
     path('accounts/', include('accounts.urls')),
 
-=======
     path('fblogin', views.fblogin, name='fblogin'),
->>>>>>> 31ed846389ab310cff8d6bfff88716452e1ec105
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

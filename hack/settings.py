@@ -41,9 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-<<<<<<< HEAD
     'accounts',
-=======
 
     # for facebook and google authentication
     'allauth',
@@ -51,7 +49,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
->>>>>>> 31ed846389ab310cff8d6bfff88716452e1ec105
 ]
 
 MIDDLEWARE = [
