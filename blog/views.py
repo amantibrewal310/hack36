@@ -40,7 +40,12 @@ def del_com(request, com_id):
    # user_info = get_object_or_404(User,)
    # if comment.author == request.user:
     comment.delete()
-    return redirect('/detail/'+str(comment.pp))
+    product_id = comment.pp
+    post = get_object_or_404(Post, pk=product_id)
+    print(post)
+    comm = Comment.objects.filter(pp=product_id).order_by('-date_posted')
+    cur_user = request.user
+    return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
     ### return redirect('blog-home')
 
 
@@ -54,7 +59,11 @@ def detail(request, post_id):
         com.pp = post_id
         com.date_posted = timezone.datetime.now()
         com.save()
-        return redirect('/detail/'+str(post_id))
+        post = get_object_or_404(Post, pk=post_id)
+        print(post)
+        comm = Comment.objects.filter(pp=post_id).order_by('-date_posted')
+        cur_user = request.user
+        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
     else:
         post = get_object_or_404(Post, pk=post_id)
@@ -75,9 +84,10 @@ class PostDetailView(DetailView):
     model = Post
 
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = '/blog/'
 
     def test_func(self):
         post = self.get_object()
@@ -89,7 +99,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
-
+   # template_name = 'blog/home.html'
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -148,6 +158,10 @@ def upvote(request, product_id):
         product = get_object_or_404(Post, pk=product_id)
         product.votes_total += 1
         product.save()
-        return redirect('/detail/' + str(product.id))
+        post = get_object_or_404(Post, pk=product_id)
+        print(post)
+        comm = Comment.objects.filter(pp=product_id).order_by('-date_posted')
+        cur_user = request.user
+        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
 

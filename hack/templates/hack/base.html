@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+	<html lang="zxx" class="no-js">
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,53 +53,40 @@
 					</div>			  					
 				</div>
 		  </div>
-			
-			<div class="container main-menu">
-				<div class="row align-items-center justify-content-between d-flex">
-					<div id="logo">
-						<a href="index.html">MNNIT Edu Hub</a>
-					</div>
-					<nav id="nav-menu-container">
-						<ul class="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="courses.html">Courses</a></li>
-							<li><a href="events.html">Events</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li class="menu-has-children"><a href="">Blog</a>
-								<ul>
-									<li><a href="blog-home.html">Blog Home</a></li>
-									<li><a href="blog-single.html">Blog Single</a></li>
-								</ul>
-							</li>
-							<li class="menu-has-children"><a href="">Pages</a>
-								<ul>
-									<li><a href="course-details.html">Course Details</a></li>
-									<li><a href="event-details.html">Event Details</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li class="menu-has-children"><a href="">Level 2 </a>
-										<ul>
-											<li><a href="#">Item One</a></li>
-											<li><a href="#">Item Two</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</nav><!-- #nav-menu-container -->
-				</div>
-			</div>
-		</header><!-- #header -->
-		<!-- {% if messages %}
-		{% for message in messages %}
-		<div class="alert alert-{{ message.tags }}">
-			{{ message }}
-		</div>
-		{% endfor %}
-		{% endif %}
-		{% block content %}
-		{% endblock %} -->
+
+		    <div class="container main-menu">
+		    	<div class="row align-items-center justify-content-between d-flex">
+			      <div id="logo">
+			        <a href="index.html">SHARE GYAN</a>
+			      </div>
+					{% if user.is_authenticated %}
+			      <nav id="nav-menu-container">
+			        <ul class="nav-menu">
+
+			          <li><a href="#">Home</a></li>
+			          <li><a href="#">Profile</a></li>
+			          <li><a href="#">Find Tutor</a></li>
+						<li><a href="{% url 'post-create' %}">Create Post</a></li>
+			          <li><a href="{% url 'blog-home' %}">Recent</a></li>
+
+
+			          <li ><a href="#">Contact</a>
+			          </li>
+			          <li><a href="#">Logout</a></li>
+			        </ul>
+			      </nav><!-- #nav-menu-container -->
+					{% endif %}
+		    	</div>
+		    </div>
+		  </header><!-- #header -->
+		  <br><br><br><br><br>
+		  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+    {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
 
 		<!-- ------------------Main Content ---------->
 			{% block body %}{% endblock %}
