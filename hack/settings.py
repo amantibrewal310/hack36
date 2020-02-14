@@ -33,12 +33,25 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+
+    'django.contrib.sites',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+<<<<<<< HEAD
     'accounts',
+=======
+
+    # for facebook and google authentication
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+>>>>>>> 31ed846389ab310cff8d6bfff88716452e1ec105
 ]
 
 MIDDLEWARE = [
@@ -128,3 +141,22 @@ STATIC_URL = '/static/'
 # Media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+
+# for facebook and google authentication
+
+AUTHENTICATION_BACKENDS = (
+
+    # NEEDED TO LOGIN BY THE USERNAME IN DJANGO ADMIN , REGARDLESS OF ALLAUTH
+    'django.contrib.auth.backends.ModelBackend',
+
+    # ALLAUTH SPECIFIC AUTHENTICATION METHODS, SUCH AS LOGIN BY EMAIL
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+# redirect to index after login 
+LOGIN_REDIRECT_URL = '/'
+
+SITE_ID=1
