@@ -52,6 +52,20 @@
                 </div>														
             </div>
             <div class="col-lg-8">
+                {% load socialaccount %}
+                {% providers_media_js %}
+                <div class="container mb-2">
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-2">
+                            <a href="{% provider_login_url "facebook" method="js_sdk" %}" class="genric-btn info circle float-right" >Facebook</a> 
+                        </div>
+                        <div class="col-2 "> 
+                            <a href="{% provider_login_url "google" %}" class="genric-btn danger circle float-right">Google</a>
+                        </div>
+                    </div>
+                </div>
+                <p>You are {{user}} </p>
                 <form method="POST">
                     {% csrf_token %}
                     {{form.as_p}}
