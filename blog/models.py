@@ -16,6 +16,9 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     votes_total = models.IntegerField(default=0)
 
+    #image field added 
+    image = models.ImageField(upload_to = 'images/', blank=True, null=True)
+
     def __str__(self):
         return self.title
 
@@ -28,3 +31,14 @@ class Comment(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     pp = models.IntegerField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.content
+
+
+
+# class added for disallowing multiple upvotes by same user
+
+class Vote(models.Model):
+    postID = models.ForeignKey(Post,on_delete=models.CASCADE)
+    userID = models.ForeignKey(User,on_delete=models.CASCADE, blank=True, null=True)
