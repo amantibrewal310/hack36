@@ -63,4 +63,26 @@ def fetchData(request):
     iot =0
     others =0
     for i in a:
-        pass
+        if(i.skills=="Web Development"):
+            web_dev+=1
+        elif(i.skills=="Android Development"):
+            and_dev+=1
+        elif(i.skills=="Communication Skills"):
+            comm_skill+=1
+        elif(i.skills=="Internet of Thing"):
+            ml+=1
+        elif(i.skills=="Machin Learning"):
+            iot+=1
+        else:
+            others+=1
+        args = {
+            'web_dev':web_dev,
+            'and_dev':and_dev,
+            'comm_skill':comm_skill,
+            'ml':ml,
+            'iot':iot,
+            'others':others
+        }
+
+        return render(request,'survey/data.html',args)
+        
