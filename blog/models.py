@@ -28,3 +28,6 @@ class Comment(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     pp = models.IntegerField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.content
