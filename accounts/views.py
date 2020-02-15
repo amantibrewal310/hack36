@@ -10,6 +10,10 @@ from django.contrib.auth import login, logout
 def login_view(request):
     return render(request,'accounts/login.html')
 
+# social login cancelled
+def login_cancelled(request):
+    return render(request, 'accounts/login.html')
+
 def signup_view(request):
     if(request.method=='POST'):
         form = RegistrationForm(request.POST)
