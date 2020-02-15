@@ -1,0 +1,74 @@
+{% extends 'hack/base.html' %}
+{% block title %}Update - Portfolio{% endblock %}
+{% block body %}
+<section class="banner-area relative about-banner" id="home">	
+    <div class="overlay overlay-bg"></div>
+    <div class="container">				
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Edit Profile				
+                </h1>	
+                <p class="text-white link-nav"><a href="index.html">Profile </a>  <span class="lnr lnr-arrow-right"></span>  <a href="contact.html"> Edit	</a></p>
+            </div>	
+        </div>
+    </div>
+</section>
+
+<div class="whole-wrap">
+    <div class="container">
+        <div class="section-top-border">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <h3 class="mb-30">Update Portfolio</h3>
+                    <form action="{% url 'accounts:edit_portfolio' %}" method="POST" enctype="multipart/form-data">{% csrf_token%}
+                        <div class="mt-10">
+                            <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+                        </div>
+                        <div class="mt-10">
+                            <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+                        </div>
+                        <div class="mt-10">
+                            <textarea name="bio" class="single-textarea" placeholder="Bio" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Bio'" required=""></textarea>
+                        </div>
+                        <div class="input-group-icon mt-10">
+                            <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                            <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required="" class="single-input">
+                        </div>
+                        <div class="input-group-icon mt-10">
+                            <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                            <div><input type="text" name="city" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'" required="" class="single-input-secondary"></div>
+                            
+                            <!-- <div class="form-select" id="default-select">
+                                <select style="display: none;">
+                                    <option value="1">City</option>
+                                    <option value="1">Dhaka</option>
+                                    <option value="1">Dilli</option>
+                                    <option value="1">Newyork</option>
+                                    <option value="1">Islamabad</option>
+                                </select><div class="nice-select" tabindex="0"><span class="current">City</span><ul class="list"><li data-value="1" class="option selected">City</li><li data-value="1" class="option">Dhaka</li><li data-value="1" class="option">Dilli</li><li data-value="1" class="option">Newyork</li><li data-value="1" class="option">Islamabad</li></ul></div>
+                            </div> -->
+                        </div>
+                        <div class="mt-10">
+                            <input type="text" name="website" placeholder="Website/Linkedin" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Website/Linkedin'" required="" class="single-input-secondary">
+                        </div>
+                        <div class="mt-10">
+                            <input type="tel" name="phone" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'" required="" class="single-input-secondary">
+                        </div>
+                        <div class="mt-10">
+                            <input type="text" name="skills" placeholder="Master Skill" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Master Skill'" required="" class="single-input-secondary">
+                        </div>
+                        <div class="mt-10">
+                            <h5 class="single-input-secondary" >Upload Profile Image</h5>
+                            <input type="file" name="image"required="" class="single-input-secondary">
+                        </div>
+                        <div class="button-group-area mt-40">
+                            <input type="submit" class="genric-btn primary e-large" value="Update"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

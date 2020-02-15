@@ -5,10 +5,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login, logout
+
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .models import *
+
+from .models import UserProfile
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -16,6 +19,10 @@ User = get_user_model()
 
 def login_view(request):
     return render(request,'accounts/login.html')
+
+# social login cancelled
+def login_cancelled(request):
+    return render(request, 'accounts/login.html')
 
 def signup_view(request):
     if(request.method=='POST'):
@@ -56,6 +63,7 @@ def logout_view(request):
     else:
         return redirect('/')
 
+@login_required(login_url="/accounts/sign_in")
 def edit_profile(request):
     if(request.method=="POST"):
         form = EditProfileForm(request.POST, instance=request.user)
@@ -70,6 +78,7 @@ def edit_profile(request):
 
 
 
+<<<<<<< HEAD
 #FRIEND REQUEST FUNCTIONS
 @login_required
 def users_list(request):
@@ -232,3 +241,35 @@ def profile_view(request, pk):
         'rec_appoint': rec_appoint
     }
     return render(request, 'accounts/profile.html', context)
+=======
+# user porfoilio as viewed by others, for every user
+
+def portfolio(request):
+    return render(request, 'accounts/portfolio.html')
+
+@login_required(login_url="/accounts/sign_in")
+def edit_portfolio(request):
+    if request.method=="POST":
+        userprofile = UserProfile()
+        userprofile.user = request.user
+        
+        # userprofile.first_name = request.POST['first_name']
+        # userprofile.last_name = request.POST['last_name']
+        userprofile.bio = request.POST['bio']
+        userprofile.address = request.POST['address']
+        userprofile.city = request.POST['city']
+        if request.POST['website'].startswith('http://') or request.POST['website'].startswith('https://'):
+            userprofile.website = request.POST['url']
+        else :
+            userprofile.website = 'http://' + request.POST['website']
+        print(request.POST['skills'])
+        userprofile.phone = request.POST['phone']
+        userprofile.skills = request.POST['skills']
+        userprofile.image = request.FILES['image']
+        print(userprofile.user_id)
+        userprofile.save()
+
+        return redirect('/')
+    else:
+        return render(request,'accounts/update_portfolio.html')
+>>>>>>> upstream/master

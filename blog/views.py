@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Vote
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
@@ -10,6 +10,7 @@ from django.utils import timezone
 from .models import Comment
 from django.core.mail import send_mail
 from django.contrib import messages
+# from . import forms
 # Create your views here.
 
 
@@ -54,22 +55,24 @@ def detail(request, post_id):
         print("HELLO")
         print(post_id)
         com = Comment()
-        com.content = request.POST['comm']
+        com.content = request.POST['message']
         com.author = request.user
         com.pp = post_id
         com.date_posted = timezone.datetime.now()
         com.save()
         post = get_object_or_404(Post, pk=post_id)
         print(post)
-        comm = Comment.objects.filter(pp=post_id).order_by('-date_posted')
+        co = Comment.objects.filter(pp=post_id).order_by('-date_posted')
         cur_user = request.user
-        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
+
+        return render(request, 'blog/post_detail.html', {'post': post, 'comments': co, 'cur_user': cur_user})
+
     else:
         post = get_object_or_404(Post, pk=post_id)
         print(post)
         comm = Comment.objects.filter(pp=post_id).order_by('-date_posted')
         cur_user = request.user
-        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
+        return render(request, 'blog/post_detail.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
     #if request.method == 'POST':
      #   post = get_object_or_404(Post, pk=post_id)
@@ -97,7 +100,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    # form_class = forms.PostCreateForm
+    fields = ['title', 'content','image']
    # template_name = 'blog/home.html'
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -106,7 +110,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content','image']
     # template_name = 'blog/home.html'
 
 
@@ -140,16 +144,28 @@ def search(request):
 
 
 
+
 @login_required
 def upvote(request, product_id):
     if request.method == 'POST':
-        product = get_object_or_404(Post, pk=product_id)
-        product.votes_total += 1
-        product.save()
+
+        try: 
+            vote = Vote.objects.get(postID=product_id, userID=request.user)
+        except Vote.DoesNotExist:
+            vote = None
+
+        if vote is None:
+            product = get_object_or_404(Post, pk=product_id)
+            vote = Vote(postID=product, userID=request.user)
+            product.votes_total += 1
+            product.save()
+            vote.save()
+
         post = get_object_or_404(Post, pk=product_id)
-        print(post)
         comm = Comment.objects.filter(pp=product_id).order_by('-date_posted')
         cur_user = request.user
-        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
+            
+        return render(request, 'blog/post_detail.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
 
+    
