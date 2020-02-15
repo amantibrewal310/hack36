@@ -6,94 +6,94 @@
 </h2>
 <br>
 <div class="container">
-<section class="post-content-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8 posts-list">
-							<div class="single-post row">
-								<div class="col-lg-3  col-md-3 meta-details">
-
-									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author }}</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6">{{ post.date_posted|date:"F d, Y" }}<span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6">{{ post.votes_total }} <span class="lnr lnr-eye"></span></p>
-									</div>
-								</div>
-								<div class="col-lg-9 col-md-9 ">
-									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
-									</div>
-									<a class="posts-title" href="blog-single.html"><h3><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3></a>
-									<p class="excert">
-									{{ post.content }}
-									</p>
-									<a href="{% url 'detail' post.id %}" class="primary-btn">View More</a>
-								</div>
-							</div>
+    <section class="post-content-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post row">
+                        <div class="col-lg-3  col-md-3 meta-details">
+                            
+                            <div class="user-details row">
+                                <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author }}</a> <span class="lnr lnr-user"></span></p>
+                                <p class="date col-lg-12 col-md-12 col-6">{{ post.date_posted|date:"F d, Y" }}<span class="lnr lnr-calendar-full"></span></p>
+                                <p class="view col-lg-12 col-md-12 col-6">{{ post.votes_total }} <span class="lnr lnr-eye"></span></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 ">
+                            <div class="feature-img">
+                                <img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+                            </div>
+                            <a class="posts-title" href="blog-single.html"><h3><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3></a>
+                            <p class="excert">
+                                {{ post.content }}
+                            </p>
+                            <a href="{% url 'detail' post.id %}" class="primary-btn">View More</a>
                         </div>
                     </div>
                 </div>
-</section>
+            </div>
+        </div>
+    </section>
 </div>
 <div class="container">
     <br>
-{% if post.author == user %}
-        <a href="{% url 'post-update' post.id %}">Update</a>
-        <a href="{% url 'post-delete' post.id %}">Delete</a>
-        {% endif %}
+    {% if post.author == user %}
+    <a href="{% url 'post-update' post.id %}">Update</a>
+    <a href="{% url 'post-delete' post.id %}">Delete</a>
+    {% endif %}
     <br>
-<div class="col-2">
+    <div class="col-2">
         <a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="btn btn-primary btn-lg btn-block">Upvote {{ post.votes_total }}</button></a>
     </div>
-
-<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
-    {% csrf_token %}
-    <input type="hidden">
-
-</form>
+    
+    <form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
+        {% csrf_token %}
+        <input type="hidden">
+        
+    </form>
 </div>
 <br><br>
 <div class="container">
     <h3> Comments</h3>
     <br><br>
     {% if user.is_authenticated %}
-        <h4>Add a comment</h4>
-<form method="POST" action="{% url 'detail' post.id %}">
-    {% csrf_token %}
-   <textarea name="comm" cols="60" rows="5" required="required">
-</textarea>
-    <br>
-    <button type="submit" class="btn btn-outline-info btn-block col-md-3">Add</button>
-</form>
-{% endif %}
+    <h4>Add a comment</h4>
+    <form method="POST" action="{% url 'detail' post.id %}">
+        {% csrf_token %}
+        <textarea name="comm" cols="60" rows="5" required="required">
+        </textarea>
+        <br>
+        <button type="submit" class="btn btn-outline-info btn-block col-md-3">Add</button>
+    </form>
+    {% endif %}
     <br><br>
-     <div class="comments-area">
-    {% for com in comments %}
-								<div class="comment-list">
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static 'img/blog/c1.jpg' %}" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">{{ com.author }}</a></h5>
-                                                <p class="date">{{ com.date_posted|date:"F d, Y" }} </p>
-                                                <p class="comment">
-                                                   {{ com.content }}
-                                                </p>
-                                            </div>
-                                        </div>
-{% if com.author == request.user %}
-        <a href="{% url 'del_com' com.id %}">Delete</a>
-         {% endif %}
-                                    </div>
-                                </div>
-         <br>
-
-    {% endfor %}
-     </div>
-
-<br>
+    <div class="comments-area">
+        {% for com in comments %}
+        <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                    <div class="thumb">
+                        <img src="{% static 'img/blog/c1.jpg' %}" alt="">
+                    </div>
+                    <div class="desc">
+                        <h5><a href="#">{{ com.author }}</a></h5>
+                        <p class="date">{{ com.date_posted|date:"F d, Y" }} </p>
+                        <p class="comment">
+                            {{ com.content }}
+                        </p>
+                    </div>
+                </div>
+                {% if com.author == request.user %}
+                <a href="{% url 'del_com' com.id %}">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+        
+        {% endfor %}
+    </div>
+    
+    <br>
 </div>
 <br>
 

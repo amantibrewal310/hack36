@@ -54,23 +54,23 @@ def detail(request, post_id):
         print("HELLO")
         print(post_id)
         com = Comment()
-        com.content = request.POST['comm']
+        com.content = request.POST['message']
         com.author = request.user
         com.pp = post_id
         com.date_posted = timezone.datetime.now()
         com.save()
         post = get_object_or_404(Post, pk=post_id)
         print(post)
-        comm = Comment.objects.filter(pp=post_id).order_by('-date_posted')
+        co = Comment.objects.filter(pp=post_id).order_by('-date_posted')
         cur_user = request.user
-        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
+        return render(request, 'blog/post_detail.html', {'post': post, 'comments': co, 'cur_user': cur_user})
 
     else:
         post = get_object_or_404(Post, pk=post_id)
         print(post)
         comm = Comment.objects.filter(pp=post_id).order_by('-date_posted')
         cur_user = request.user
-        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
+        return render(request, 'blog/post_detail.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
     #if request.method == 'POST':
      #   post = get_object_or_404(Post, pk=post_id)

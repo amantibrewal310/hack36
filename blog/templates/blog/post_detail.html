@@ -1,73 +1,355 @@
 {% extends 'hack/base.html' %}
+{% block title%}Blog{% endblock %}
 {% block body %}
-<br>
-<h2 style="text-align:center">Detail of blog by: {{ post.author }}
-</h2>
-<br>
-<div class="container">
-<section class="post-content-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8 posts-list">
-							<div class="single-post row">
-								<div class="col-lg-3  col-md-3 meta-details">
+{% load static %}
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">	
+	<div class="overlay overlay-bg"></div>
+	<div class="container">				
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					Feed				
+				</h1>	
+				<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p>
+			</div>	
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
 
-									<div class="user-details row">
-										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author }}</a> <span class="lnr lnr-user"></span></p>
-										<p class="date col-lg-12 col-md-12 col-6">{{ post.date_posted|date:"F d, Y" }}<span class="lnr lnr-calendar-full"></span></p>
-										<p class="view col-lg-12 col-md-12 col-6">{{ post.votes_total }} <span class="lnr lnr-eye"></span></p>
-									</div>
+<section class="post-content-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 posts-list">
+				<div class="single-post row">
+					<div class="col-lg-12">
+						<div class="feature-img">
+							<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+						</div>									
+					</div>
+					<div class="col-lg-3  col-md-3 meta-details">
+						<ul class="tags">
+							<li><a href="#">Food,</a></li>
+							<li><a href="#">Technology,</a></li>
+							<li><a href="#">Politics,</a></li>
+							<li><a href="#">Lifestyle</a></li>
+						</ul>
+						<div class="user-details row">
+							<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author }}</a> <span class="lnr lnr-user"></span></p>
+							<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{ post.date_posted|date:"F d, Y" }}</a> <span class="lnr lnr-calendar-full"></span></p>
+							<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{ post.votes_total }}</a> <span class="lnr lnr-eye"></span></p>
+							<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>
+							<ul class="social-links col-lg-12 col-md-12 col-6">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-github"></i></a></li>
+								<li><a href="#"><i class="fa fa-behance"></i></a></li>
+							</ul>		
+						</div>
+					</div>
+					<div class="col-lg-9 col-md-9">
+						<h3 class="mt-20 mb-20">{{ post.title }}</h3>
+						<p class="excert">
+							{{ post.content }}
+						</p>
+						
+					</div>
+					
+				</div>
+				{% if post.author == user %}
+				<div class="navigation-area">
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+							<a href="{% url 'post-delete' post.id %}" class="genric-btn primary" style="float: right;">Delete</a>
+						</div>
+						<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+							<a href="{% url 'post-update' post.id %}" class="genric-btn primary" style="float: right;">Update</a>
+						</div>
+						<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+							<a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="genric-btn primary">Upvote {{ post.votes_total }}</button></a>
+							<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
+								{% csrf_token %}
+								<input type="hidden">
+							</form>
+						</div>									
+					</div>
+				</div>
+				{% endif %}
+				{% if user.is_authenticated %}
+				<div class="comment-form">
+					<h4>Leave a Comment</h4>
+					<form method="POST" action="{% url 'detail' post.id %}">
+						{% csrf_token %}
+						<div class="form-group">
+							<textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+						</div>
+						<button type="submit" class="primary-btn text-uppercase" >Post Comment</button>	
+					</form>
+				</div>
+				{% endif %}
+				
+				<div class="comments-area">
+					<h4>Comments</h4>
+					<div class="comment-list">
+						{% for com in comments %}
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="{% static 'img/blog/c1.jpg' %}" alt="">
 								</div>
-								<div class="col-lg-9 col-md-9 ">
-									<div class="feature-img">
-										<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
-									</div>
-									<a class="posts-title" href="blog-single.html"><h3><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h3></a>
-									<p class="excert">
-									{{ post.content }}
+								<div class="desc">
+									<h5><a href="#">{{ com.author }}</a></h5>
+									<p class="date">{{ com.date_posted|date:"F d, Y" }} </p>
+									<p class="comment">
+										{{ com.content }}
 									</p>
-									<a href="{% url 'detail' post.id %}" class="primary-btn">View More</a>
 								</div>
 							</div>
-                        </div>
-                    </div>
-                </div>
+							{% if com.author == request.user %}
+							<div class="reply-btn">
+								<a href="{% url 'del_com' com.id %}" class="btn-reply text-uppercase">Delete</a> 
+							</div>
+							{% endif %}
+						</div>
+						{% endfor %}
+					</div>	
+					<!-- <div class="comment-list left-padding">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="img/blog/c2.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Elsie Cunningham</a></h5>
+									<p class="date">December 4, 2017 at 3:12 pm </p>
+									<p class="comment">
+										Never say goodbye till the end comes!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">reply</a> 
+							</div>
+						</div>
+					</div>	
+					<div class="comment-list left-padding">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="img/blog/c3.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Annie Stephens</a></h5>
+									<p class="date">December 4, 2017 at 3:12 pm </p>
+									<p class="comment">
+										Never say goodbye till the end comes!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">reply</a> 
+							</div>
+						</div>
+					</div>
+					<div class="comment-list">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="img/blog/c4.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Maria Luna</a></h5>
+									<p class="date">December 4, 2017 at 3:12 pm </p>
+									<p class="comment">
+										Never say goodbye till the end comes!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">reply</a> 
+							</div>
+						</div>
+					</div>	
+					<div class="comment-list">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="img/blog/c5.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Ina Hayes</a></h5>
+									<p class="date">December 4, 2017 at 3:12 pm </p>
+									<p class="comment">
+										Never say goodbye till the end comes!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">reply</a> 
+							</div>
+						</div>
+					</div>	                                             				 -->
+				</div>
+				
+			</div>
+			<div class="col-lg-4 sidebar-widgets">
+				<div class="widget-wrap">
+					<div class="single-sidebar-widget search-widget">
+						<form class="search-form" action="#">
+							<input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+							<button type="submit"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+					<div class="single-sidebar-widget user-info-widget">
+						<img src="img/blog/user-info.png" alt="">
+						<a href="#"><h4>Charlie Barber</h4></a>
+						<p>
+							Senior blog writer
+						</p>
+						<ul class="social-links">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-github"></i></a></li>
+							<li><a href="#"><i class="fa fa-behance"></i></a></li>
+						</ul>
+						<p>
+							Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
+						</p>
+					</div>
+					<div class="single-sidebar-widget popular-post-widget">
+						<h4 class="popular-title">Popular Posts</h4>
+						<div class="popular-post-list">
+							<div class="single-post-list d-flex flex-row align-items-center">
+								<div class="thumb">
+									<img class="img-fluid" src="img/blog/pp1.jpg" alt="">
+								</div>
+								<div class="details">
+									<a href="blog-single.html"><h6>Space The Final Frontier</h6></a>
+									<p>02 Hours ago</p>
+								</div>
+							</div>
+							<div class="single-post-list d-flex flex-row align-items-center">
+								<div class="thumb">
+									<img class="img-fluid" src="img/blog/pp2.jpg" alt="">
+								</div>
+								<div class="details">
+									<a href="blog-single.html"><h6>The Amazing Hubble</h6></a>
+									<p>02 Hours ago</p>
+								</div>
+							</div>
+							<div class="single-post-list d-flex flex-row align-items-center">
+								<div class="thumb">
+									<img class="img-fluid" src="img/blog/pp3.jpg" alt="">
+								</div>
+								<div class="details">
+									<a href="blog-single.html"><h6>Astronomy Or Astrology</h6></a>
+									<p>02 Hours ago</p>
+								</div>
+							</div>
+							<div class="single-post-list d-flex flex-row align-items-center">
+								<div class="thumb">
+									<img class="img-fluid" src="img/blog/pp4.jpg" alt="">
+								</div>
+								<div class="details">
+									<a href="blog-single.html"><h6>Asteroids telescope</h6></a>
+									<p>02 Hours ago</p>
+								</div>
+							</div>															
+						</div>
+					</div>
+					<div class="single-sidebar-widget ads-widget">
+						<a href="#"><img class="img-fluid" src="img/blog/ads-banner.jpg" alt=""></a>
+					</div>
+					<div class="single-sidebar-widget post-category-widget">
+						<h4 class="category-title">Post Catgories</h4>
+						<ul class="cat-list">
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Technology</p>
+									<p>37</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Lifestyle</p>
+									<p>24</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Fashion</p>
+									<p>59</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Art</p>
+									<p>29</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Food</p>
+									<p>15</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Architecture</p>
+									<p>09</p>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="d-flex justify-content-between">
+									<p>Adventure</p>
+									<p>44</p>
+								</a>
+							</li>															
+						</ul>
+					</div>	
+					<div class="single-sidebar-widget newsletter-widget">
+						<h4 class="newsletter-title">Newsletter</h4>
+						<p>
+							Here, I focus on a range of items and features that we use in life without
+							giving them a second thought.
+						</p>
+						<div class="form-group d-flex flex-row">
+							<div class="col-autos">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
+										</div>
+									</div>
+									<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+								</div>
+							</div>
+							<a href="#" class="bbtns">Subcribe</a>
+						</div>	
+						<p class="text-bottom">
+							You can unsubscribe at any time
+						</p>								
+					</div>
+					<div class="single-sidebar-widget tag-cloud-widget">
+						<h4 class="tagcloud-title">Tag Clouds</h4>
+						<ul>
+							<li><a href="#">Technology</a></li>
+							<li><a href="#">Fashion</a></li>
+							<li><a href="#">Architecture</a></li>
+							<li><a href="#">Fashion</a></li>
+							<li><a href="#">Food</a></li>
+							<li><a href="#">Technology</a></li>
+							<li><a href="#">Lifestyle</a></li>
+							<li><a href="#">Art</a></li>
+							<li><a href="#">Adventure</a></li>
+							<li><a href="#">Food</a></li>
+							<li><a href="#">Lifestyle</a></li>
+							<li><a href="#">Adventure</a></li>
+						</ul>
+					</div>								
+				</div>
+			</div>
+		</div>
+	</div>	
 </section>
-</div>
-<div class="container">
-    <br>
-{% if post.author == user %}
-        <a href="{% url 'post-update' post.id %}">Update</a>
-        <a href="{% url 'post-delete' post.id %}">Delete</a>
-        {% endif %}
-    <br>
-<div class="col-2">
-        <a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="btn btn-primary btn-lg btn-block">Upvote {{ post.votes_total }}</button></a>
-    </div>
-
-<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
-    {% csrf_token %}
-    <input type="hidden">
-
-</form>
-</div>
-<br><br>
-<div class="container">
-    <h3> Comments</h3>
-    <br><br>
-    {% if user.is_authenticated %}
-        <h4>Add a comment</h4>
-<form method="POST" action="{% url 'detail' post.id %}">
-    {% csrf_token %}
-   <textarea name="comm" cols="60" rows="5" required="required">
-</textarea>
-    <br>
-
-    <button type="submit" class="btn btn-outline-info btn-block col-md-2">Add</button>
-
-</form>
-{% endif %}
-    <br><br>
-</div>
-
-{% endblock %}
+{% endblock %}	
