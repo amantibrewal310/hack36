@@ -20,7 +20,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('detail', kwargs={'post_id': self.pk})
 
 
 class Comment(models.Model):
@@ -28,3 +28,6 @@ class Comment(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     pp = models.IntegerField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.content
