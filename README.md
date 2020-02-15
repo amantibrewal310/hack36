@@ -1,5 +1,7 @@
-# hack36 - Annual Hackathon
+# hack36 2020 - Annual Hackathon of MNNIT ALLAHABAD
 Theme - Smart Education
+
+Project Name - ShareGyaan
 
 Project Description - 
 
@@ -26,3 +28,8 @@ Additional Problem solved -
 Government of India has recently announced a budget of 99,300 crores for skill development. This website would track the skills that are in demand, people are eager to learn.
 The background Survey would let them know how they can invest. 
 
+Team Name : Hack Overflow
+Team Memeber : Ayush Srivastava
+               Nishant
+               Harshit Gangwar
+               Aman Tibrewal
