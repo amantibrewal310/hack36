@@ -1,45 +1,31 @@
 {% extends 'hack/base1.html' %}
+{% block title%}Blog{% endblock %}
 {% block body %}
-
-<section class="banner-area relative" id="home">
+<!-- start banner Area -->
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">	
     <div class="overlay overlay-bg"></div>
-    <div class="container">
+    <div class="container">				
         <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
                 <h1 class="text-white">
-                    Feed
-                </h1>
+                    Feed				
+                </h1>	
                 <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p>
-            </div>
+            </div>	
         </div>
     </div>
-</section><!--
-	<h2 style="text-align:center">Blog and Discussions</h2>
-<div class="conatiner">
-	<h3 style="padding-left:15px">Search for specific blogs</h3>
-	<br>
-	<div class="col-md-4 col-md-offset-4">
-		<div class="single-footer-widget">
-			<div class="" id="mc_embed_signup">
-				<form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
-					<input class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" >
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search </button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-</div>-->
-<br>
+</section>
+<!-- End banner Area -->
 
-	<section class="post-content-area">
-		<div class="container">
-			<div class="row">
-				{% for post in posts %}
+<section class="post-content-area">
+    <div class="container">
+        <div class="row">
+            {% for post in posts %}
 				<div class="col-lg-8 posts-list">
 					<div class="single-post row">
 						<div class="col-lg-3  col-md-3 meta-details">
-							
+
 							<div class="user-details row">
 								<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author }}</a> <span class="lnr lnr-user"></span></p>
 								<p class="date col-lg-12 col-md-12 col-6">{{ post.date_posted|date:"F d, Y" }}<span class="lnr lnr-calendar-full"></span></p>
@@ -58,19 +44,16 @@
 						</div>
 					</div>
 				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</section>
-<br>
-<div class="container">
-	{% if is_paginated %}
-	
+            {% endfor %}
+                
+                														
+                {% if is_paginated %}
+
 	{% if page_obj.has_previous %}
 	<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
 	<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
 	{% endif %}
-	
+
 	{% for num in page_obj.paginator.page_range %}
 	{% if page_obj.number == num %}
 	<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
@@ -83,9 +66,8 @@
 	<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
 	{% endif %}
 	{% endif %}
-	
-</div>
-<div class="col-lg-4 sidebar-widgets">
+            </div>
+            <div class="col-lg-4 sidebar-widgets">
                 <div class="widget-wrap">
                     <div class="single-sidebar-widget search-widget">
                         <form class="search-form" action="#">
@@ -147,7 +129,7 @@
                                     <a href="blog-single.html"><h6>Asteroids telescope</h6></a>
                                     <p>02 Hours ago</p>
                                 </div>
-                            </div>
+                            </div>															
                         </div>
                     </div>
                     <div class="single-sidebar-widget ads-widget">
@@ -197,9 +179,9 @@
                                     <p>Adventure</p>
                                     <p>44</p>
                                 </a>
-                            </li>
+                            </li>															
                         </ul>
-                    </div>
+                    </div>	
                     <div class="single-sidebar-widget newsletter-widget">
                         <h4 class="newsletter-title">Newsletter</h4>
                         <p>
@@ -217,10 +199,10 @@
                               </div>
                             </div>
                             <a href="#" class="bbtns">Subcribe</a>
-                        </div>
+                        </div>	
                         <p class="text-bottom">
                             You can unsubscribe at any time
-                        </p>
+                        </p>								
                     </div>
                     <div class="single-sidebar-widget tag-cloud-widget">
                         <h4 class="tagcloud-title">Tag Clouds</h4>
@@ -238,8 +220,10 @@
                             <li><a href="#">Lifestyle</a></li>
                             <li><a href="#">Adventure</a></li>
                         </ul>
-                    </div>
+                    </div>								
                 </div>
             </div>
-
-{% endblock %}
+        </div>
+    </div>	
+</section>
+{% endblock %}	

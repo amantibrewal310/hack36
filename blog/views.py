@@ -12,10 +12,13 @@ from django.core.mail import send_mail
 from django.contrib import messages
 # Create your views here.
 
+def blogpost(request):
+    return render(request,'blog/post.html')
+
 
 class PostListView(ListView):
     model = Post
-    template_name = 'blog/home.html' # <app>/<model>_<viewtype>.html
+    template_name = 'blog/post.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 4
