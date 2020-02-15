@@ -1,9 +1,24 @@
 {% extends 'hack/base.html' %}
 {% load crispy_forms_tags %}
 {% block body %}
-<div class="container">
-<div class="content-section">
-    <form method="POST">
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">	
+    <div class="overlay overlay-bg"></div>
+    <div class="container">				
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Create a Post				
+                </h1>	
+                <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p>
+            </div>	
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<div class="container my-4">
+<div class="content-section my-4">
+    <form method="POST" class="form-control">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">
@@ -12,7 +27,7 @@
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Post</button>
+            <button class="genric-btn success" type="submit">Post</button>
         </div>
     </form>
 

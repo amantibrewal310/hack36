@@ -10,6 +10,7 @@ from django.utils import timezone
 from .models import Comment
 from django.core.mail import send_mail
 from django.contrib import messages
+# from . import forms
 # Create your views here.
 
 
@@ -98,7 +99,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    # form_class = forms.PostCreateForm
+    fields = ['title', 'content','image']
    # template_name = 'blog/home.html'
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -107,7 +109,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content','image']
     # template_name = 'blog/home.html'
 
 
