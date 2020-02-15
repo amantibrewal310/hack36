@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login, logout
+from .models import UserProfile
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def login_view(request):
@@ -53,6 +55,7 @@ def logout_view(request):
     else:
         return redirect('/')
 
+@login_required(login_url="/accounts/sign_in")
 def edit_profile(request):
     if(request.method=="POST"):
         form = EditProfileForm(request.POST, instance=request.user)
@@ -71,3 +74,29 @@ def edit_profile(request):
 
 def portfolio(request):
     return render(request, 'accounts/portfolio.html')
+
+@login_required(login_url="/accounts/sign_in")
+def edit_portfolio(request):
+    if request.method=="POST":
+        userprofile = UserProfile()
+        userprofile.user = request.user
+        
+        # userprofile.first_name = request.POST['first_name']
+        # userprofile.last_name = request.POST['last_name']
+        userprofile.bio = request.POST['bio']
+        userprofile.address = request.POST['address']
+        userprofile.city = request.POST['city']
+        if request.POST['website'].startswith('http://') or request.POST['website'].startswith('https://'):
+            userprofile.website = request.POST['url']
+        else :
+            userprofile.website = 'http://' + request.POST['website']
+        print(request.POST['skills'])
+        userprofile.phone = request.POST['phone']
+        userprofile.skills = request.POST['skills']
+        userprofile.image = request.FILES['image']
+        print(userprofile.user_id)
+        userprofile.save()
+
+        return redirect('/')
+    else:
+        return render(request,'accounts/update_portfolio.html')
