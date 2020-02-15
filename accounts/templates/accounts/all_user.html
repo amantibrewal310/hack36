@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for user_p in users %}
+<li><a href="{{ user_p.get_absolute_url }}">{{ user_p }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
