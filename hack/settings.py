@@ -34,10 +34,23 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+
+    'django.contrib.sites',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
+    'crispy_forms',
+    'accounts',
+
+    # for facebook and google authentication
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -120,10 +133,35 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+<<<<<<< HEAD
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'hack/assets/')]
+=======
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'hack/assets/')]
+>>>>>>> upstream/master
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 # Media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+
+# for facebook and google authentication
+
+AUTHENTICATION_BACKENDS = (
+
+    # NEEDED TO LOGIN BY THE USERNAME IN DJANGO ADMIN , REGARDLESS OF ALLAUTH
+    'django.contrib.auth.backends.ModelBackend',
+
+    # ALLAUTH SPECIFIC AUTHENTICATION METHODS, SUCH AS LOGIN BY EMAIL
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+# redirect to index after login 
+LOGIN_REDIRECT_URL = '/'
+
+SITE_ID=1
+
+LOGIN_URL = 'accounts:sign_in'
