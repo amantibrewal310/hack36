@@ -162,7 +162,7 @@ def upvote(request, product_id):
         comm = Comment.objects.filter(pp=product_id).order_by('-date_posted')
         cur_user = request.user
             
-        return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
+        return render(request, 'blog/post_detail.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
 
     

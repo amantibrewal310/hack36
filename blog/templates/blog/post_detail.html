@@ -48,8 +48,9 @@
 							</ul>		
 						</div>
 					</div>
-					<div class="col-lg-9 col-md-9">
+					<div class="col-lg-9 col-md-9">	
 						<h3 class="mt-20 mb-20">{{ post.title }}</h3>
+						<img src="{{ post.image.url }}" alt="image link is improper" class="img-fluid mt-2 mb-3">
 						<p class="excert">
 							{{ post.content }}
 						</p>
@@ -65,18 +66,18 @@
 						</div>
 						<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 							<a href="{% url 'post-update' post.id %}" class="genric-btn primary" style="float: right;">Update</a>
-						</div>
-						<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-							<a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="genric-btn primary">Upvote {{ post.votes_total }}</button></a>
-							<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
-								{% csrf_token %}
-								<input type="hidden">
-							</form>
-						</div>									
+						</div>								
 					</div>
 				</div>
 				{% endif %}
 				{% if user.is_authenticated %}
+					<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+						<a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="genric-btn primary">Upvote {{ post.votes_total }}</button></a>
+						<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
+							{% csrf_token %}
+							<input type="hidden">
+						</form>
+					</div>	
 				<div class="comment-form">
 					<h4>Leave a Comment</h4>
 					<form method="POST" action="{% url 'detail' post.id %}">
