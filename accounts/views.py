@@ -1,20 +1,21 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from accounts.forms import RegistrationForm, EditProfileForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login, logout
-from .models import UserProfile
+from django.http import HttpResponseRedirect
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from .models import *
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+User = get_user_model()
+
 def login_view(request):
     return render(request,'accounts/login.html')
-
-# social login cancelled
-def login_cancelled(request):
-    return render(request, 'accounts/login.html')
 
 def signup_view(request):
     if(request.method=='POST'):
@@ -55,6 +56,7 @@ def logout_view(request):
     else:
         return redirect('/')
 
+
 @login_required(login_url="/accounts/sign_in")
 def edit_profile(request):
     if(request.method=="POST"):
@@ -69,18 +71,16 @@ def edit_profile(request):
     # return HttpResponse("edit profile")
 
 
-
-# user porfoilio as viewed by others, for every user
-
 def portfolio(request):
     return render(request, 'accounts/portfolio.html')
 
+
 @login_required(login_url="/accounts/sign_in")
 def edit_portfolio(request):
-    if request.method=="POST":
-        userprofile = UserProfile()
+    if request.method == "POST":
+        userprofile = UserProfile1()
         userprofile.user = request.user
-        
+
         # userprofile.first_name = request.POST['first_name']
         # userprofile.last_name = request.POST['last_name']
         userprofile.bio = request.POST['bio']
@@ -88,7 +88,7 @@ def edit_portfolio(request):
         userprofile.city = request.POST['city']
         if request.POST['website'].startswith('http://') or request.POST['website'].startswith('https://'):
             userprofile.website = request.POST['url']
-        else :
+        else:
             userprofile.website = 'http://' + request.POST['website']
         print(request.POST['skills'])
         userprofile.phone = request.POST['phone']
@@ -99,4 +99,168 @@ def edit_portfolio(request):
 
         return redirect('/')
     else:
-        return render(request,'accounts/update_portfolio.html')
+        return render(request, 'accounts/update_portfolio.html')
+
+
+#FRIEND REQUEST FUNCTIONS
+@login_required
+def users_list(request):
+    users = UserProfile.objects.exclude(user=request.user)
+    print(len(users))
+    context = {
+        'users': users
+    }
+    return render(request, "accounts/all_user.html", context)
+
+
+def send_friend_request(request, id):
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, id=id)
+        frequest, created = FriendRequest.objects.get_or_create(
+            from_user=request.user,
+            to_user=user
+        )
+        users = UserProfile.objects.exclude(user=request.user)
+        print(len(users))
+        context = {
+            'users': users
+        }
+        return render(request, "accounts/all_user.html", context)
+
+
+def send_message(request, id):
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, id=id)
+        frequest, created = Message.objects.get_or_create(
+            from_user=request.user,
+            to_user=user
+        )
+        frequest.message = request.POST['mess']
+        frequest.timestamp = timezone.datetime.now()
+        frequest.save()
+        users = UserProfile.objects.exclude(user=request.user)
+        print(len(users))
+        context = {
+            'users': users
+        }
+        return render(request, "accounts/all_user.html", context)
+
+
+def cancel_friend_request(request, id):
+    if request.user.is_authenticated:
+        user = get_object_or_404()
+        frequest = FriendRequest.objects.filter(
+            from_user=request.user,
+            to_user=user).first()
+        frequest.delete()
+        users = UserProfile.objects.exclude(user=request.user)
+        print(len(users))
+        context = {
+            'users': users
+        }
+        return render(request, "accounts/all_user.html", context)
+
+
+def cancel_message(request, id):
+    if request.user.is_authenticated:
+        user = get_object_or_404()
+        frequest = Message.objects.filter(
+            from_user=request.user,
+            to_user=user).first()
+        frequest.delete()
+        users = UserProfile.objects.exclude(user=request.user)
+        print(len(users))
+        context = {
+            'users': users
+        }
+        return render(request, "accounts/all_user.html", context)
+
+
+def accept_friend_request(request, id):
+    from_user = get_object_or_404(User, id=id)
+    frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
+    user1 = frequest.to_user
+    user2 = from_user
+    user1.userprofile.friends.add(user2.userprofile)
+    user2.userprofile.friends.add(user1.userprofile)
+    frequest.delete()
+    users = UserProfile.objects.exclude(user=request.user)
+    print(len(users))
+    context = {
+        'users': users
+    }
+    return render(request, "accounts/all_user.html", context)
+
+def accept_message(request, id):
+    from_user = get_object_or_404(User, id=id)
+    frequest = Message.objects.filter(from_user=from_user, to_user=request.user).first()
+    user1 = frequest.to_user
+    user2 = from_user
+    appointment = Appoint()
+    appointment.to_user = user1
+    appointment.from_user = user2
+    appointment.timestamp = timezone.datetime.now()
+    appointment.message = frequest.message
+    appointment.save()
+    frequest.delete()
+    users = UserProfile.objects.exclude(user=request.user)
+    print(len(users))
+    context = {
+        'users': users
+    }
+    return render(request, "accounts/all_user.html", context)
+
+
+def delete_request(request, id):
+    from_user = get_object_or_404(User, id=id)
+    frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
+    frequest.delete()
+    users = UserProfile.objects.exclude(user=request.user)
+    print(len(users))
+    context = {
+        'users': users
+    }
+    return render(request, "accounts/all_user.html", context)
+
+
+def delete_message(request, id):
+    from_user = get_object_or_404(User, id=id)
+    frequest = Message.objects.filter(from_user=from_user, to_user=request.user).first()
+    frequest.delete()
+    users = UserProfile.objects.exclude(user=request.user)
+    print(len(users))
+    context = {
+        'users': users
+    }
+    users = UserProfile.objects.exclude(user=request.user)
+    print(len(users))
+    context = {
+        'users': users
+    }
+    return render(request, "accounts/all_user.html", context)
+
+
+def profile_view(request, pk):
+    p = UserProfile.objects.filter(pk=pk).first()
+    u = p.user
+    sent_request = FriendRequest.objects.filter(from_user=p.user)
+    rec_request = FriendRequest.objects.filter(to_user=p.user)
+    sent_appoint = Message.objects.filter(from_user=p.user)
+    rec_appoint = Message.objects.filter(to_user=p.user)
+    button_status ='none'
+    friends = p.friends.all()
+    print(len(friends))
+    if p not in request.user.userprofile.friends.all():
+        button_status = 'not_friend'
+        if len(FriendRequest.objects.filter(from_user=request.user).filter(to_user=p.user)) == 1:
+            button_status = 'friend_request_sent'
+    context = {
+        'u': u,
+        'button_status': button_status,
+        'friend_list': friends,
+        'sent_friend_requests': sent_request,
+        'rec_friend_requests': rec_request,
+        'sent_appoint': sent_appoint,
+        'rec_appoint': rec_appoint
+    }
+    return render(request, 'accounts/profile.html', context)

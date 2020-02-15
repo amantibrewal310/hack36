@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if request.user == u %}
+
+<h2>friends</h2>
+
+{% for fr in friend_list %}
+
+<a href="{{ fr.user.userprofile.get_absolute_url }}">{{ fr.user.username }}</a>
+{% endfor %}
+
+<h2>Sent request</h2>
+<ul>
+{% for req in sent_friend_requests %}
+<li><a href="#">{{ req.to_user.username }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Sent Appointment</h2>
+<ul>
+{% for req in sent_appoint %}
+<li><a href="#">{{ req.to_user.username }}</a></li>
+    <p>{{ req.message }}</p>
+{% endfor %}
+</ul>
+
+<h2>Received request</h2>
+{% for req in rec_friend_requests %}
+<a href="{{ req.from_user.profile.get_absolute_url }}">{{ req.from_user.username }}</a>
+<a href="/accounts/request/accept/{{ req.from_user.id }}">Accept</a>
+<a href="/accounts/request/delete/{{ req.from_user.id }}">Ignore</a>
+{% endfor %}
+
+
+<h2>Received Appointment</h2>
+{% for req in rec_appoint %}
+<a href="{{ req.from_user.profile.get_absolute_url }}">{{ req.from_user.username }}</a>
+<p>{{ req.message }}</p>
+<h6>{{ req.timestamp }}</h6>
+<a href="/accounts/message/accept/{{ req.from_user.id }}">Accept</a>
+<a href="/accounts/message/delete/{{ req.from_user.id }}">Ignore</a>
+{% endfor %}
+
+{% else %}
+
+<h3>Select an appointment.Enter the messages</h3>
+<form method="POST" action="/accounts/message/send/{{ u.id }}/">
+    {% csrf_token %}
+   <textarea name="mess" cols="60" rows="5" required="required">
+</textarea>
+    <br>
+    <button type="submit" class="btn btn-outline-info btn-block col-md-3">Add</button>
+</form>
+
+
+
+
+{% if button_status == 'not_friend' %}
+<a href="/accounts/request/send/{{ u.id }}">Add friend</a>
+{% elif button_status == 'friend_request_sent' %}
+<a href="/accounts/request/cancel/{{ u.id }}">Cancel request</a>
+{% endif %}
+{% endif %}
+
+</body>
+</html>
