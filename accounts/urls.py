@@ -27,6 +27,10 @@ urlpatterns = [
     path('sign_in/', views.sign_in_view,name='sign_in'),
     path('signout/', views.logout_view,name='logout'),
     path('profile/edit/', views.edit_profile,name='edit_profile'),
+    path('portfolio/edit/', views.edit_portfolio, name='edit_portfolio'),
+
+    # temporary portfolio path created
+    path('portfolio/', views.portfolio, name='portfolio'),
 
 
 ]
