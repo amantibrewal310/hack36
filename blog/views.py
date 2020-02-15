@@ -64,7 +64,6 @@ def detail(request, post_id):
         comm = Comment.objects.filter(pp=post_id).order_by('-date_posted')
         cur_user = request.user
         return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
-
     else:
         post = get_object_or_404(Post, pk=post_id)
         print(post)
