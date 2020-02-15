@@ -25,7 +25,7 @@ def signup_view(request):
 
     # return render(request,'accounts/signup.html')
 
-def login_view(request):
+def sign_in_view(request):
     if(request.method=='POST'):
         form = LoginForm(data=request.POST)
         if form.is_valid():

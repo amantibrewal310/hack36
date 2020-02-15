@@ -16,4 +16,5 @@ urlpatterns = [
     path('delete/<int:com_id>/', views.del_com, name='del_com'),
     path('user/<str:username>', UserPostListView, name='user-posts'),
     path('<int:product_id>/upvote', views.upvote, name='upvote'),
+    path('blogpost',views.blogpost,name='blogpost'),
 ]

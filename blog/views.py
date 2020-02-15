@@ -12,6 +12,9 @@ from django.core.mail import send_mail
 from django.contrib import messages
 # Create your views here.
 
+def blogpost(request):
+    return render(request,'blog/post.html')
+
 
 class PostListView(ListView):
     model = Post
