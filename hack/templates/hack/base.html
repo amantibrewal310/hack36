@@ -74,6 +74,7 @@
 							{% endif %}
 							<li><a href="contact.html">Contact</a></li>
 							{% if user.is_authenticated %}
+							<li><a href="{% url 'post-create' %}">Create Post</a></li>
 							<li><form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}<button class="btn btn primary" type="submit">Sign out</button></form></li>
 							{% else %}
 							<li><a href="{% url 'accounts:sign_in' %}">Sign In</a></li>
