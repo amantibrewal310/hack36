@@ -3,13 +3,23 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 # Create your models here.
+class Skills(models.Model):
+	title = models.CharField(max_length = 30)
+	description = models.TextField()
+
+
+	def __str__(self):
+		return self.title
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete = models.CASCADE)
-    description = models.CharField(max_length=100, default="")
+    bio = models.TextField(default="")
+    image = models.ImageField(upload_to='profile/img/',blank=True,null=True)
+    address = models.CharField(max_length=80,blank=True,null=True)
     city = models.CharField(max_length=100, default="")
     website = models.CharField(max_length=100, default="")
     phone = models.IntegerField(default=0)
+    skills = models.ManyToManyField(Skills)
 
     def __str__(self):
         return self.user.username

@@ -64,3 +64,18 @@ def edit_profile(request):
         args = {'form':form}
         return render(request,'accounts/edit_profile.html',args)
     # return HttpResponse("edit profile")
+
+def edit_portfolio(request):
+    if request.method=="POST":
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        bio = request.POST['bio']
+        address = request.POST['address']
+        city = request.POST['city']
+        website = request.POST['website']
+        phone = request.POST['phone']
+        skills = request.POST['skills']
+        image = request.FILES['image']
+
+
+    return render(request,'accounts/update_portfolio.html')

@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class Skills(models.Model):
@@ -11,6 +12,7 @@ class Skills(models.Model):
 		return self.title
 
 class Profiles(models.Model):
+	# profile_id = models.ForeignKey(User, on_delete=models.CASCADE)
 	name = models.CharField(max_length = 30)
 	image= models.ImageField(upload_to='events/',blank=True, null=True)
 	address=models.CharField(max_length=80,blank=True,null=True)
