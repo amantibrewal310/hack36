@@ -22,7 +22,8 @@ def signup_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+                            # url starts from localost/acc if / is put else continue form the coming address add/account/po..
+            return redirect('/accounts/portfolio/edit')
         else:
             return HttpResponse("Please Enter good password")
     else:
