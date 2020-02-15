@@ -1,5 +1,6 @@
 {% extends 'hack/base.html' %}
 
+
 {% block title %} Signup {% endblock %}
 
 {% block body %}
@@ -68,6 +69,7 @@
                 <p>You are {{user}} </p>
                 <form method="POST">
                     {% csrf_token %}
+                    
                     {{form.as_p}}
                     <button class="genric-btn primary" style="float: right;">Sign Up</button>
                 </form>
