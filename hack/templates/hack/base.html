@@ -67,8 +67,8 @@
 							{%if user.is_authenticated %}
 							<li class="menu-has-children"><a href="">Profile</a>
 								<ul>
-									<li><a href="blog-home.html">Edit</a></li>
-									<li><a href="blog-single.html">Blog Single</a></li>
+									<li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+									<li><a href="{% url 'accounts:edit_portfolio'%}">Portfolio - Edit</a></li>
 								</ul>
 							</li>
 							{% endif %}
