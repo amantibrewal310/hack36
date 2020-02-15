@@ -17,7 +17,7 @@ class Post(models.Model):
     votes_total = models.IntegerField(default=0)
 
     #image field added 
-    image = models.ImageField(upload_to = 'images/', blank=True, null=True)
+    image = models.ImageField(upload_to = 'images/', default='images/rose2.jpg')
 
     def __str__(self):
         return self.title
