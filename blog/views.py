@@ -12,13 +12,10 @@ from django.core.mail import send_mail
 from django.contrib import messages
 # Create your views here.
 
-def blogpost(request):
-    return render(request,'blog/post.html')
-
 
 class PostListView(ListView):
     model = Post
-    template_name = 'blog/home.html' # <app>/<model>_<viewtype>.html
+    template_name = 'blog/post.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 4
@@ -111,6 +108,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
+    # template_name = 'blog/home.html'
+
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -123,15 +122,11 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-def home(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'blog/home.html', context)
-
-
-def about(request):
-    return render(request, 'blog/about.html')
+# def home(request):
+#     context = {
+#         'posts': Post.objects.all()
+#     }
+#     return render(request, 'blog/home.html', context)
 
 
 def search(request):
@@ -143,15 +138,6 @@ def search(request):
     else:
         return render(request, template)
 
-
-def send(request):
-    print("Hello")
-    send_mail('hello',
-              'Hello there everyone',
-              'iayush.srivastava1999@gmail.com',
-              ['iayush.srivastava1999@gmail.com'],
-              fail_silently=False)
-    return render(request, 'blog/send.html')
 
 
 
