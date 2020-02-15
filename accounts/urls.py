@@ -13,6 +13,8 @@ urlpatterns = [
     path('profile/edit/',views.edit_profile,name='edit_profile'),
     path('portfolio/edit',views.edit_portfolio,name='edit_portfolio')
 
+    # temporary portfolio path created
+    path('portfolio/', views.portfolio, name='portfolio'),
     # socail login cancelled
     # path('social/login/cancelled/', views.sign_in_view,name='sign_in'),
 

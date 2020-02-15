@@ -1,0 +1,116 @@
+{% extends 'hack/base.html' %}
+
+{% block title %}User Portfolio{% endblock %}
+
+{% block body %}
+<section class="banner-area relative about-banner" id="home">	
+    <div class="overlay overlay-bg"></div>
+    <div class="container">				
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Porfoilio			
+                </h1>	
+                <p class="text-white link-nav"><a href="">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> Portfolio</a></p>
+            </div>	
+        </div>
+    </div>
+</section>
+
+
+
+
+<div class="container">
+    
+    <div class="row mt-100">
+    
+        <div class="col-6 sidebar-widgets">
+			<div class="widget-wrap">
+				<div class="single-sidebar-widget search-widget">
+					<form class="search-form" action="#">
+			            <input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+			            <button type="submit"><i class="fa fa-search"></i></button>
+			        </form>
+				</div>
+				<div class="single-sidebar-widget user-info-widget">
+					<img src="img/blog/user-info.png" alt="">
+					<a href="#"><h4>Charlie Barber</h4></a>
+					<p>
+						Senior blog writer
+					</p>
+					<ul class="social-links">
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-github"></i></a></li>
+						<li><a href="#"><i class="fa fa-behance"></i></a></li>
+					</ul>
+					<p>
+						Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
+					</p>
+				</div>
+										
+			</div>
+        </div>
+
+    {% comment %} ......................................... {% endcomment %}
+
+        <div class="col-6 right-contents mt-50">
+			<ul>
+				<li>
+					<a class="justify-content-between d-flex" href="#">
+						<p>Trainer’s Name</p> 
+						<span class="or">George Mathews</span>
+					</a>
+				</li>
+				<li>
+					<a class="justify-content-between d-flex" href="#">
+						<p>Course Fee </p>
+						<span>$230</span>
+					</a>
+				</li>
+				<li>
+					<a class="justify-content-between d-flex" href="#">
+						<p>Available Seats </p>
+						<span>15</span>
+					<
+				</li>
+				<li>
+					<a class="justify-content-between d-flex" href="#">
+						<p>Schedule </p>
+						<span>2.00 pm to 4.00 pm</span>
+					</a>
+				</li>
+			</ul>
+			<a href="#" class="primary-btn text-uppercase">Enroll the course</a>
+		</div>
+
+    </div>    
+
+
+
+    {% comment %} ......................row2...................... {% endcomment %}
+
+    <div class="row">
+        <div class="col-12">
+            
+        </div>
+    </div>
+
+</div>
+
+
+
+                        
+
+
+
+
+
+
+
+
+                        
+
+
+
+{% endblock %}

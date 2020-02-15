@@ -70,9 +70,10 @@ def edit_profile(request):
 
 
 
+# user porfoilio as viewed by others, for every user
 
-
-
+def portfolio(request):
+    return render(request, 'accounts/portfolio.html')
 
 @login_required(login_url="/accounts/sign_in")
 def edit_portfolio(request):

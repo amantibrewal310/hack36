@@ -47,8 +47,8 @@
 							</ul>			
 						</div>
 						<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-							<a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 012 3654 896</span></a>
-							<a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a>			
+							<a href="tel:+9027576327"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 012 3654 896</span></a>
+							<a href="mailto:support@sharegyan.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a>			
 						</div>
 					</div>			  					
 				</div>
@@ -98,6 +98,28 @@
 		<!-- ------------------Main Content ---------->
 			{% block body %}{% endblock %}
 		
+
+		<section class="cta-two-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 cta-left">
+							{% if user.is_authenticated %}
+								<h1>Continue the Good Work {{ user.username }} !</h1>
+							{% else %}
+								<h1>Are you interseted?</h1>
+							{% endif %}
+						</div>
+						<div class="col-lg-4 cta-right">
+							{% if user.is_authenticated %}
+								<a class="primary-btn wh" href="{% url 'home' %}">Back To Home!</a>
+							{% else %}
+								<a class="primary-btn wh" href="{% url 'accounts:signup' %}">Sign Up Now!</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>	
+			</section>
+
 		<!-- ------------END of Main content----------------->
 		<!-- start footer Area -->
 		<footer class="footer-area section-gap">
