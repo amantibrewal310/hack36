@@ -18,8 +18,10 @@
 </section>
 <!-- End banner Area -->
 
-<section class="post-content-area">
+
+<section class="post-content-area mt-5">
     <div class="container">
+    <h1 style="margin-left: 30%;" class="mb-4">Latest Posts</h1>
         <div class="row">
             <div class="col-lg-8 posts-list">
                 {% for post in posts %}
@@ -99,7 +101,7 @@
                     </div>
                     <div class="single-sidebar-widget user-info-widget">
                         <img src="img/blog/user-info.png" alt="">
-                        <a href="#"><h4>Charlie Barber</h4></a>
+                        <a href="#"><h4>{{user.first_name}} {{user.last_name}}</h4></a>
                         <p>
                             Senior blog writer
                         </p>

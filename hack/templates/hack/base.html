@@ -40,10 +40,10 @@
 					<div class="row">
 						<div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
 							<ul>
-							  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							  {% comment %} <li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
 							  <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-							  <li><a href="#"><i class="fa fa-behance"></i></a></li>
+							  <li><a href="#"><i class="fa fa-behance"></i></a></li> {% endcomment %}
 							</ul>			
 						</div>
 						<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
@@ -57,7 +57,7 @@
 			<div class="container main-menu">
 				<div class="row align-items-center justify-content-between d-flex">
 					<div id="logo">
-						<a href="index.html"><h1 class="text-white">ShareGyaan</h1></a>
+						<a href="{% url 'home' %}"><h1 class="text-white">ShareGyaan</h1></a>
 					</div>
 					<nav id="nav-menu-container">
 						<ul class="nav-menu">
@@ -67,8 +67,8 @@
 							{%if user.is_authenticated %}
 							<li class="menu-has-children"><a href="">Profile</a>
 								<ul>
-									<li><a href="blog-home.html">Edit</a></li>
-									<li><a href="blog-single.html">Blog Single</a></li>
+									<li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+									<li><a href="{% url 'accounts:edit_portfolio'%}">Portfolio - Edit</a></li>
 								</ul>
 							</li>
 							{% endif %}
@@ -105,7 +105,7 @@
 					<div class="row">
 						<div class="col-lg-8 cta-left">
 							{% if user.is_authenticated %}
-								<h1>Continue the Good Work {{ user.username }} !</h1>
+								<h1>Continue the Good Work {{ user.first_name }} !</h1>
 							{% else %}
 								<h1>Are you interseted?</h1>
 							{% endif %}

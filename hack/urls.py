@@ -27,6 +27,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('accounts/', include('accounts.urls')),
     path('profiles/',include('profiles.urls')),
+    path('survey/',include('survey.urls')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

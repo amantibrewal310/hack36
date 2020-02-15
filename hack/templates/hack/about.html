@@ -7,98 +7,73 @@
 {% comment %} title {% endcomment %}
 
 {% block title %}About{% endblock %}
-			  
-			<!-- start banner Area -->
-			<section class="banner-area relative about-banner" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								About Us				
-							</h1>	
-							<p class="text-white link-nav"><a href="{% url 'home' %}"> Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{% url 'about' %}"> About Us</a></p>
-						</div>	
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">	
+	<div class="overlay overlay-bg"></div>
+	<div class="container">				
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					About Us				
+				</h1>	
+				<p class="text-white link-nav"><a href="{% url 'home' %}"> Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{% url 'about' %}"> About Us</a></p>
+			</div>	
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->	
+
+<!-- Start feature Area -->
+<section class="feature-area pb-120">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="single-feature">
+					<div class="title">
+						<h4>Anyone can be a learner and <br>anyone can be tutor</h4>
+					</div>
+					<div class="desc-wrap">
+						<p>
+							Its the skills that make <br>you special. 
+							Other around you might be willing to learn them.
+						</p>
+						<!-- <a href="#">Join Now</a>  -->									
 					</div>
 				</div>
-			</section>
-			<!-- End banner Area -->	
-
-			<!-- Start feature Area -->
-			<section class="feature-area pb-120">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-feature">
-								<div class="title">
-									<h4>Anyone can be a learner and <br>anyone can be tutor</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										Its the skills that make <br>you special. 
-										Other around you might be willing to learn them.
-									</p>
-									<!-- <a href="#">Join Now</a>  -->									
-								</div>
-							</div>
-						</div>	
-						<div class="col-lg-4">
-							<div class="single-feature">
-								<div class="title">
-									<h4>Choose whom do you want to learn form</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										An array of Guides/Instructors is available here. <br> 
-										You can search, find, check credentials and then finally decide the right Instructor for you.
-									</p>
-									<!-- <a href="#">Join Now</a> -->									
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-feature">
-								<div class="title">
-									<h4>Help others achive a little more</h4>
-								</div>
-								<div class="desc-wrap">
-									<p>
-										At a point in journey of becoming master at some skill, you too would have felt the need for someone's help. <br>Now is your chance to be that person for others out there.
-									</p>
-									<!-- <a href="#">Join Now</a> -->									
-								</div>
-							</div>
-						</div>
-																	
+			</div>	
+			<div class="col-lg-4">
+				<div class="single-feature">
+					<div class="title">
+						<h4>Choose whom do you want to learn form</h4>
 					</div>
-				</div>	
-			</section>
-			<!-- End feature Area -->		
-
-			<!-- Start info Area -->
-			<section class="info-area pb-120">
-				<div class="container-fluid">
-					<div class="row align-items-center">
-						<div class="col-lg-6 no-padding info-area-left">
-							<img class="img-fluid" src="{% static 'img/about-img.jpg' %}" alt="some image here">
-						</div>
-						<div class="col-lg-6 info-area-right">
-							<h1>What &nbsp; role  &nbsp; do &nbsp; 
-							we play?</h1>
-                            <br>
-							<p style="font-size: 1.2em; word-spacing: 0.4em;">Apart form the skills listed in the regular course structure, there are several other skills that one needs to learn if he/she aspires to be succeed in their respective carrer
-							<br><br>
-							
-								We simply bring together the best possible resource to the needy ones in the easiest possible way.about-banner.about-content.
-								<br><br>
-                                You want to teach, we got students.
-								You want to learn, we have got Instructors.
-							</p>
-						</div>
+					<div class="desc-wrap">
+						<p>
+							An array of Guides/Instructors is available here. <br> 
+							You can search, find, check credentials and then finally decide the right Instructor for you.
+						</p>
+						<!-- <a href="#">Join Now</a> -->									
 					</div>
-				</div>	
-			</section>
-			<!-- End info Area -->	
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="single-feature">
+					<div class="title">
+						<h4>Help others achive a little more</h4>
+					</div>
+					<div class="desc-wrap">
+						<p>
+							At a point in journey of becoming master at some skill, you too would have felt the need for someone's help. <br>Now is your chance to be that person for others out there.
+						</p>
+						<!-- <a href="#">Join Now</a> -->									
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>	
+</section>
+<!-- End feature Area -->		
 
 			<!-- Start course-mission Area -->
 			<section class="course-mission-area pb-120">
@@ -109,227 +84,216 @@
 								<h1 class="mb-10">Share your knowledge.
                                 It’s a way
                                 to achieve immortality.</h1>
-								<p style="font-size: 1.2em; word-spacing: 0.4em;">Believe Us! There isn't anything that gives more pleasure than helping others/p>
+								<p style="font-size: 1.2em; word-spacing: 0.4em;">Believe Us! There isn't anything that gives more pleasure than helping others </p>
 							</div>
 						</div>
 					</div>							
-                    <div class="row">
-                        <div class="col-md-6 accordion-left">
-
-                            <!-- accordion 2 start-->
-                            <dl class="accordion">
-                                <dt>
-                                    <a href="">Success</a>
-                                </dt>
-                                <dd>
-                                    Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
-                                </dd>
-                                <dt>
-                                    <a href="">Info</a>
-                                </dt>
-                                <dd>
-                                    Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
-                                </dd>
-                                <dt>
-                                    <a href="">Danger</a>
-                                </dt>
-                                <dd>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-                                </dd>
-                                <dt>
-                                    <a href="">Warning</a>
-                                </dt>
-                                <dd>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
-                                </dd>                                    
-                            </dl>
-                            <!-- accordion 2 end-->
-                        </div>
-                        <div class="col-md-6 video-right justify-content-center align-items-center d-flex relative">
-                        	<div class="overlay overlay-bg"></div>
-							<a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
-                        </div>
-                    </div>
-				</div>	
-			</section>
-			<!-- End course-mission Area -->
-					
-
-			<!-- Start search-course Area 
-			<section class="search-course-area relative">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">
-					<div class="row justify-content-between align-items-center">
-						<div class="col-lg-6 col-md-6 search-course-left">
-							<h1 class="text-white">
-								Get reduced fee <br>
-								during this Summer!
-							</h1>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-							</p>
-							<div class="row details-content">
-								<div class="col single-detials">
-									<span class="lnr lnr-graduation-hat"></span>
-									<a href="#"><h4>Expert Instructors</h4></a>		
-									<p>
-										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-									</p>						
-								</div>
-								<div class="col single-detials">
-									<span class="lnr lnr-license"></span>
-									<a href="#"><h4>Certification</h4></a>		
-									<p>
-										Usage of the Internet is becoming more common due to rapid advancement of technology and power.
-									</p>						
-								</div>								
-							</div>
+					<div class="row">
+						<div class="col-md-6 accordion-left">
+							
+							<!-- accordion 2 start-->
+							<dl class="accordion">
+								<dt>
+									<a href="">Success</a>
+								</dt>
+								<dd>
+									Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam.
+								</dd>
+								<dt>
+									<a href="">Info</a>
+								</dt>
+								<dd>
+									Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. leo quam aliquet diam, congue laoreet elit metus eget diam.
+								</dd>
+								<dt>
+									<a href="">Danger</a>
+								</dt>
+								<dd>
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
+								</dd>
+								<dt>
+									<a href="">Warning</a>
+								</dt>
+								<dd>
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. Proin ac metus diam.
+								</dd>                                    
+							</dl>
+							<!-- accordion 2 end-->
 						</div>
-						<div class="col-lg-4 col-md-6 search-course-right section-gap">
-							<form class="form-wrap" action="#">
-								<h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4>		
-								<input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" >
-								<input type="phone" class="form-control" name="phone" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'" >
-								<input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" >
-								<div class="form-select" id="service-select">
-									<select>
-										<option datd-display="">Choose Course</option>
-										<option value="1">Course One</option>
-										<option value="2">Course Two</option>
-										<option value="3">Course Three</option>
-										<option value="4">Course Four</option>
-									</select>
-								</div>									
-								<button class="primary-btn text-uppercase">Submit</button>
-							</form>
+						<div class="col-md-6 video-right justify-content-center align-items-center d-flex relative">
+							<div class="overlay overlay-bg"></div>
+							<a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
 						</div>
 					</div>
 				</div>	
 			</section>
-			 End search-course Area -->			
-
-			<!-- Start review Area -->
-			<section class="review-area section-gap relative">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row">
-						<div class="active-review-carusel">
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Fannie Rowe</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
-									</div>
-								</div>
+			<!-- End course-mission Area -->
+			
+			
+			<!-- Start search-course Area 
+				<section class="search-course-area relative">
+					<div class="overlay overlay-bg"></div>
+					<div class="container">
+						<div class="row justify-content-between align-items-center">
+							<div class="col-lg-6 col-md-6 search-course-left">
+								<h1 class="text-white">
+									Get reduced fee <br>
+									during this Summer!
+								</h1>
 								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
 								</p>
+								<div class="row details-content">
+									<div class="col single-detials">
+										<span class="lnr lnr-graduation-hat"></span>
+										<a href="#"><h4>Expert Instructors</h4></a>		
+										<p>
+											Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+										</p>						
+									</div>
+									<div class="col single-detials">
+										<span class="lnr lnr-license"></span>
+										<a href="#"><h4>Certification</h4></a>		
+										<p>
+											Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+										</p>						
+									</div>								
+								</div>
 							</div>
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Hulda Sutton</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
-									</div>
-								</div>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
+							<div class="col-lg-4 col-md-6 search-course-right section-gap">
+								<form class="form-wrap" action="#">
+									<h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4>		
+									<input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" >
+									<input type="phone" class="form-control" name="phone" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'" >
+									<input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" >
+									<div class="form-select" id="service-select">
+										<select>
+											<option datd-display="">Choose Course</option>
+											<option value="1">Course One</option>
+											<option value="2">Course Two</option>
+											<option value="3">Course Three</option>
+											<option value="4">Course Four</option>
+										</select>
+									</div>									
+									<button class="primary-btn text-uppercase">Submit</button>
+								</form>
 							</div>
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Fannie Rowe</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+						</div>
+					</div>	
+				</section>
+				End search-course Area -->			
+				
+				<!-- Start review Area -->
+				<section class="review-area section-gap relative">
+					<div class="overlay overlay-bg"></div>
+					<div class="container">				
+						<div class="row">
+							<div class="active-review-carusel">
+								<div class="single-review item">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Fannie Rowe</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
 									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
 								</div>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-							</div>
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Hulda Sutton</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+								<div class="single-review item">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Hulda Sutton</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
 									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
 								</div>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-							</div>	
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Fannie Rowe</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+								<div class="single-review item">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Fannie Rowe</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
 									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
 								</div>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-							</div>
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Hulda Sutton</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+								<div class="single-review item">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Hulda Sutton</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
 									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
+								</div>	
+								<div class="single-review item">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Fannie Rowe</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
 								</div>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-							</div>
-							<div class="single-review item">
-								<img src="img/r1.png" alt="">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Fannie Rowe</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+								<div class="single-review item">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Hulda Sutton</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
 									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
 								</div>
-								<p>
-									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-								</p>
-							</div>
-							<div class="single-review item">
-								<div class="title justify-content-start d-flex">
-									<a href="#"><h4>Hulda Sutton</h4></a>
-									<div class="star">
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star checked"></span>
-										<span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+								<div class="single-review item">
+									<img src="img/r1.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<a href="#"><h4>Fannie Rowe</h4></a>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
 									</div>
+									<p>
+										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+									</p>
 								</div>
 								<p>
 									Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
@@ -339,22 +303,7 @@
 					</div>
 				</div>	
 			</section>
-			<!-- End review Area -->					
-
-			<!-- Start cta-two Area -->
-			<section class="cta-two-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8 cta-left">
-							<h1>Are You Interseted?</h1>
-						</div>
-						<div class="col-lg-4 cta-right">
-							<a class="primary-btn wh" href="#">Sign Up Now!</a>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End cta-two Area -->						    			
+			<!-- End review Area -->										    			
 
 			
 {% endblock %}

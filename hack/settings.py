@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'accounts',
+    'survey',
 
     # for facebook and google authentication
     'allauth',
