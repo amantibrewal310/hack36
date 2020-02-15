@@ -22,35 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 d-flex flex-column address-wrap">
-                <div class="single-contact-address d-flex flex-row">
-                    <div class="icon">
-                        <span class="lnr lnr-home"></span>
-                    </div>
-                    <div class="contact-details">
-                        <h5>Binghamton, New York</h5>
-                        <p>
-                            4343 Hinkle Deegan Lake Road
-                        </p>
-                    </div>
-                </div>
-                <div class="single-contact-address d-flex flex-row">
-                    <div class="icon">
-                        <span class="lnr lnr-phone-handset"></span>
-                    </div>
-                    <div class="contact-details">
-                        <h5>00 (958) 9865 562</h5>
-                        <p>Mon to Fri 9am to 6 pm</p>
-                    </div>
-                </div>
-                <div class="single-contact-address d-flex flex-row">
-                    <div class="icon">
-                        <span class="lnr lnr-envelope"></span>
-                    </div>
-                    <div class="contact-details">
-                        <h5>support@colorlib.com</h5>
-                        <p>Send us your query anytime!</p>
-                    </div>
-                </div>														
+                <br><h1 class = "mt-5 pt-5">Its good to <br>have you back!</h1>    													
             </div>
             <div class="col-lg-8">
                 {% load socialaccount %}
@@ -73,6 +45,7 @@
                     {{form.as_p}}
                     <button class="genric-btn primary" style="float: right;">Login</button>
                 </form>
+                <span>Don't have an account? </span><a href="{% url 'accounts:signup' %}" class="genric-btn info ml-2 mr-2" >Sign Up</a> <span>Now!</span>
             </div>
         </div>
     </div>	
