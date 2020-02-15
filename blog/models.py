@@ -31,3 +31,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+
+
+# class added for disallowing multiple upvotes by same user
+
+class Vote(models.Model):
+    postID = models.ForeignKey(Post,on_delete=models.CASCADE)
+    userID = models.ForeignKey(User,on_delete=models.CASCADE, blank=True, null=True)

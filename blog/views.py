@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Vote
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
@@ -141,16 +141,28 @@ def search(request):
 
 
 
+
 @login_required
 def upvote(request, product_id):
     if request.method == 'POST':
-        product = get_object_or_404(Post, pk=product_id)
-        product.votes_total += 1
-        product.save()
+
+        try: 
+            vote = Vote.objects.get(postID=product_id, userID=request.user)
+        except Vote.DoesNotExist:
+            vote = None
+
+        if vote is None:
+            product = get_object_or_404(Post, pk=product_id)
+            vote = Vote(postID=product, userID=request.user)
+            product.votes_total += 1
+            product.save()
+            vote.save()
+
         post = get_object_or_404(Post, pk=product_id)
-        print(post)
         comm = Comment.objects.filter(pp=product_id).order_by('-date_posted')
         cur_user = request.user
+            
         return render(request, 'blog/postdet.html', {'post': post, 'comments': comm, 'cur_user': cur_user})
 
 
+    
