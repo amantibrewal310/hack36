@@ -13,6 +13,6 @@ urlpatterns = [
     path('profile/edit/',views.edit_profile,name='edit_profile'),
 
     # socail login cancelled
-    path('social/login/cancelled/', views.sign_in_view,name='sign_in'),
+    # path('social/login/cancelled/', views.sign_in_view,name='sign_in'),
 
 ]
