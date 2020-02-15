@@ -112,7 +112,7 @@ def users_list(request):
     }
     return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def send_friend_request(request, id):
     if request.user.is_authenticated:
         user = get_object_or_404(User, id=id)
@@ -127,7 +127,7 @@ def send_friend_request(request, id):
         }
         return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def send_message(request, id):
     if request.user.is_authenticated:
         user = get_object_or_404(User, id=id)
@@ -145,7 +145,7 @@ def send_message(request, id):
         }
         return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def cancel_friend_request(request, id):
     if request.user.is_authenticated:
         user = get_object_or_404()
@@ -160,7 +160,7 @@ def cancel_friend_request(request, id):
         }
         return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def cancel_message(request, id):
     if request.user.is_authenticated:
         user = get_object_or_404()
@@ -175,7 +175,7 @@ def cancel_message(request, id):
         }
         return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def accept_friend_request(request, id):
     from_user = get_object_or_404(User, id=id)
     frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
@@ -190,7 +190,7 @@ def accept_friend_request(request, id):
         'users': users
     }
     return render(request, "accounts/all_user.html", context)
-
+@login_required
 def accept_message(request, id):
     from_user = get_object_or_404(User, id=id)
     frequest = Message.objects.filter(from_user=from_user, to_user=request.user).first()
@@ -210,7 +210,7 @@ def accept_message(request, id):
     }
     return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def delete_request(request, id):
     from_user = get_object_or_404(User, id=id)
     frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
@@ -222,7 +222,7 @@ def delete_request(request, id):
     }
     return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def delete_message(request, id):
     from_user = get_object_or_404(User, id=id)
     frequest = Message.objects.filter(from_user=from_user, to_user=request.user).first()
@@ -239,10 +239,11 @@ def delete_message(request, id):
     }
     return render(request, "accounts/all_user.html", context)
 
-
+@login_required
 def profile_view(request, pk):
     p = UserProfile.objects.filter(pk=pk).first()
     u = p.user
+    up1 = UserProfile1.objects.filter(user=u).first()
     sent_request = FriendRequest.objects.filter(from_user=p.user)
     rec_request = FriendRequest.objects.filter(to_user=p.user)
     sent_appoint = Message.objects.filter(from_user=p.user)
@@ -256,6 +257,7 @@ def profile_view(request, pk):
             button_status = 'friend_request_sent'
     context = {
         'u': u,
+        'up1': up1,
         'button_status': button_status,
         'friend_list': friends,
         'sent_friend_requests': sent_request,
