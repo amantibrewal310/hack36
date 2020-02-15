@@ -59,25 +59,26 @@
 					
 				</div>
 				{% if post.author == user %}
-				<div class="navigation-area">
+				<div class="navigation-area container ml-50" style="margin-left: 22%">
 					<div class="row">
-						<div class="col-lg-3 col-md-3 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-							<a href="{% url 'post-delete' post.id %}" class="genric-btn primary" style="float: right;">Delete</a>
+						<div class="col-lg-3 col-md-3 col-sm-3 ">
+							<a href="{% url 'post-delete' post.id %}" class="genric-btn danger float-right" style="float: right;">Delete</a>
 						</div>
-						<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-							<a href="{% url 'post-update' post.id %}" class="genric-btn primary" style="float: right;">Update</a>
+						<div class="col-lg-3 col-md-3 col-sm-3 ">
+							<a href="{% url 'post-update' post.id %}" class="genric-btn info float-right" style="float: right;">Update</a>
 						</div>								
+					
+						{% endif %}
+						{% if user.is_authenticated %}
+						<div class="col-lg-3 col-md-3 col-sm-3 ">
+							<a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="genric-btn primary float-right">Upvote {{ post.votes_total }}</button></a>
+							<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
+								{% csrf_token %}
+								<input type="hidden">
+							</form>
+						</div>
 					</div>
-				</div>
-				{% endif %}
-				{% if user.is_authenticated %}
-					<div class="col-lg-3 col-md-3 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-						<a href="javascript:{document.getElementById('upvote{{ post.id }}').submit()}"><button class="genric-btn primary">Upvote {{ post.votes_total }}</button></a>
-						<form id="upvote{{ post.id }}" method="POST" action="{% url 'upvote' post.id %}">
-							{% csrf_token %}
-							<input type="hidden">
-						</form>
-					</div>	
+				</div>	
 				<div class="comment-form">
 					<h4>Leave a Comment</h4>
 					<form method="POST" action="{% url 'detail' post.id %}">
