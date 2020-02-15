@@ -12,6 +12,8 @@ urlpatterns = [
     path('signout/',views.logout_view,name='logout'),
     path('profile/edit/',views.edit_profile,name='edit_profile'),
 
+    # temporary portfolio path created
+    path('portfolio/', views.portfolio, name='portfolio'),
     # socail login cancelled
     # path('social/login/cancelled/', views.sign_in_view,name='sign_in'),
 

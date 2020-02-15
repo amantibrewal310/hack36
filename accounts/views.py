@@ -64,3 +64,10 @@ def edit_profile(request):
         args = {'form':form}
         return render(request,'accounts/edit_profile.html',args)
     # return HttpResponse("edit profile")
+
+
+
+# user porfoilio as viewed by others, for every user
+
+def portfolio(request):
+    return render(request, 'accounts/portfolio.html')
