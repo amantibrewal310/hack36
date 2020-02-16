@@ -1,5 +1,7 @@
-# hack36 - Annual Hackathon
+# hack36 2020 - Annual Hackathon of MNNIT ALLAHABAD
 Theme - Smart Education
+
+Project Name - ShareGyaan
 
 Project Description - 
 
@@ -14,8 +16,7 @@ We know final years are mostly free and WILLING to share their knowledge and exp
 The problem is that there is no medium for them to interact with their juniors.
 Also the 1st, 2nd and 3rd years are struggling and learning new technologies so they also look for some help.
 
-
-            Why this platfrom is neccesary? 
+#Why this platfrom is neccesary? 
 
 ->  As a learner you would get a lot of instructors/tutors and 
     all the help and direction you want.
@@ -26,3 +27,8 @@ Additional Problem solved -
 Government of India has recently announced a budget of 99,300 crores for skill development. This website would track the skills that are in demand, people are eager to learn.
 The background Survey would let them know how they can invest. 
 
+Team Name : Hack Overflow
+Team Member : Ayush Srivastava,
+              Nishant,
+              Harshit Gangwar,
+              Aman Tibrewal.
