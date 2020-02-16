@@ -65,6 +65,7 @@
 							<li><a href="{% url 'about'%}">About</a></li>
 							<li><a href="{% url 'blog-home' %}">Blog</a></li>
 							{% if user.is_authenticated %}
+							<li><a href="/accounts/">All users</a></li>
 								<li><a href="{% url 'survey:survey_create' %}">Create Survey</a></li>
 							{% endif %}
 							<li><a href="{% url 'survey:survey_data' %}">Survey Stats</a></li>

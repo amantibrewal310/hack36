@@ -68,6 +68,7 @@ def fetchData(request):
         'comm_skill':len(comm_skill),
         'ml':len(ml),
         'iot':len(iot),
+        'total':len(total)
     }
 
     return render(request,'survey/data.html',args)

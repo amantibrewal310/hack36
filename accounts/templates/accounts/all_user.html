@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<ul>
-{% for user_p in users %}
-<li><a href="{{ user_p.get_absolute_url }}">{{ user_p }}</a></li>
-{% endfor %}
-</ul>
-</body>
-</html>
+{% extends 'hack/base.html'%}
+{% block body %}
+<section class="banner-area relative about-banner" id="home">	
+    <div class="overlay overlay-bg"></div>
+    <div class="container">				
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    All Users				
+                </h1>	
+                
+            </div>	
+        </div>
+    </div>
+</section>
+
+<h2 style="text-align: center;">Search from all users</h2>
+<br>
+<div class="container">
+    
+        
+            <ul>
+                {% for user_p in users %}
+                <li><h3><a href="{{ user_p.get_absolute_url }}">{{ user_p }}</a></h3></li>
+                <br>
+                {% endfor %}
+            </ul>
+        
+
+</div>
+<br><br><br>
+{% endblock %}
