@@ -23,24 +23,6 @@
 					<div class="col-lg-12 col-md-8">
 						<h3 class="mb-30">Survey Form</h3>
 						<form action="#" method="post">{% csrf_token %}
-							<!-- <div class="mt-10">
-								<input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required class="single-input">
-							</div>
-							<div class="mt-10">
-								<input type="text" name="skills" placeholder="Skills" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Skills'" required class="single-input">
-							</div>
-							<div class="mt-10">
-								<input type="text" name="city" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'" required class="single-input">
-							</div>
-							<div class="mt-10">
-								<input type="text" name="edc" placeholder="Education Background" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Education Background'" required class="single-input">
-							</div>
-							<div class="mt-10">
-								<input type="text" name="age" placeholder="Age" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Age'" required class="single-input">
-							</div>
-							<div class="button-group-area mt-40">
-								<input type="submit" class="genric-btn primary" value="Submit"></input>
-							</div> -->
 							{{form.as_p}}
 							<div class="button-group-area mt-40">
 								<input type="submit" class="genric-btn primary float-right" value="Submit"></input>
