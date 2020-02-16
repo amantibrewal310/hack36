@@ -6,7 +6,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('', views.users_list, name='users_list'),
-    path('profile/<int:pk>', views.profile_view, name='profile_view'),
+    path('profile/<int:pk>/', views.profile_view, name='profile_view'),
     path('request/send/<int:id>/', views.send_friend_request, name='send_friend_request'),
     path('request/cancel/<int:id>', views.cancel_friend_request, name='cancel_friend_request'),
     path('request/accept/<int:id>', views.accept_friend_request, name='accept_friend_request'),

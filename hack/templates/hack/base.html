@@ -65,7 +65,7 @@
 							<li><a href="{% url 'about'%}">About</a></li>
 							<li><a href="{% url 'blog-home' %}">Blog</a></li>
 							{%if user.is_authenticated %}
-							<li class="menu-has-children"><a href="">Profile</a>
+							<li class="menu-has-children"><a href="/accounts/profile/{{user.id}}/">Profile</a>
 								<ul>
 									<li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
 									<li><a href="{% url 'accounts:edit_portfolio'%}">Portfolio - Edit</a></li>
