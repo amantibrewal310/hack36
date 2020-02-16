@@ -49,40 +49,26 @@ def survey_create(request):
     if form.is_valid():
         form.save()
 
-        return render(request,'survey/create.html', {'success':'done'})
+        return render(request,'survey/data.html', {'success':'done'})
 
     return render(request,'survey/create.html', {'form':form})
 
 def fetchData(request):
 
-    a = Survey.objects.all()
-    web_dev = 0 
-    and_dev = 0
-    comm_skill = 0
-    ml = 0
-    iot =0
-    others =0
-    for i in a:
-        if(i.skills=="Web Development"):
-            web_dev+=1
-        elif(i.skills=="Android Development"):
-            and_dev+=1
-        elif(i.skills=="Communication Skills"):
-            comm_skill+=1
-        elif(i.skills=="Internet of Thing"):
-            ml+=1
-        elif(i.skills=="Machin Learning"):
-            iot+=1
-        else:
-            others+=1
-        args = {
-            'web_dev':web_dev,
-            'and_dev':and_dev,
-            'comm_skill':comm_skill,
-            'ml':ml,
-            'iot':iot,
-            'others':others
-        }
+    total = Survey.objects.all()
+    web_dev = Survey.objects.all().filter(skills='Web Development')
+    and_dev = Survey.objects.all().filter(skills='Android Development')
+    comm_skill = Survey.objects.all().filter(skills='Communication')
+    ml = Survey.objects.all().filter(skills='Machine Learning')
+    iot =Survey.objects.all().filter(skills='Internet of things')
+        
+    args = {
+        'web_dev':len(web_dev),
+        'and_dev':len(and_dev),
+        'comm_skill':len(comm_skill),
+        'ml':len(ml),
+        'iot':len(iot),
+    }
 
-        return render(request,'survey/data.html',args)
+    return render(request,'survey/data.html',args)
         
