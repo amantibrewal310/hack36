@@ -6,7 +6,7 @@ Project Name - ShareGyaan
 
 Project Description - 
 
-This website brings together the students that want to learn something to those who are willing to teach/share/help.
+This website brings together the students who wants to learn something to those who are willing to teach/share/help.
 It is different from the existing facilities such as udemy and other online course providers as you get to interact with the instructor/guide.
 
 Initially website would work on the college level, but can be expanded to city, national level.
