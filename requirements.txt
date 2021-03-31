@@ -7,7 +7,7 @@ Django==3.0.7
 django-crispy-forms==1.8.1
 django-multiselectfield==0.1.11
 idna==2.8
-lxml==4.5.0
+lxml==4.6.3
 Pillow==7.0.0
 pytz==2019.3
 requests==2.22.0
